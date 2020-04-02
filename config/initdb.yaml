@@ -1,0 +1,32 @@
+---
+apiVersion: bindings.mattmoor.dev/v1alpha1
+kind: SQLBinding
+metadata:
+  name: init-binding
+spec:
+  subject:
+    apiVersion: batch/v1
+    kind: Job
+    selector:
+      matchLabels:
+        sql-inject: "true"
+  secret:
+    name: sql-secret
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: initdb-
+  labels:
+    sql-inject: "true"
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: initdb
+        image: ko://github.com/vaikas/postgres/cmd/initdb
+        env:
+        - name: DBNAME
+          value: "knative"
+        

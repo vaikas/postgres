@@ -1,0 +1,15 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ce-reader
+  labels:
+    sql-inject: "true"
+spec:
+  template:
+    spec:
+      containers:
+      - image: ko://github.com/vaikas/postgres/cmd/cereader
+        env:
+        - name: DBNAME
+          value: "cloudevents"
+

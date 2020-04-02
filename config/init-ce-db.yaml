@@ -1,0 +1,33 @@
+apiVersion: bindings.mattmoor.dev/v1alpha1
+kind: SQLBinding
+metadata:
+  name: init-ce-binding
+  namespace: default
+spec:
+  subject:
+    apiVersion: batch/v1
+    kind: Job
+    selector:
+      matchLabels:
+        sql-inject-init: "true"
+  secret:
+    name: sql-secret
+
+---
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: init-ce-db
+  labels:
+    sql-inject-init: "true"
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: initdb
+        image: ko://github.com/vaikas/postgres/cmd/initce
+        env:
+        - name: DBNAME
+          value: "cloudevents"
