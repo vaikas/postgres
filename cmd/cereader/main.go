@@ -26,11 +26,10 @@ func (a *reader) handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatal(err)
 	}
-	rows, err := db.Query("SELECT time, type, source FROM events")
+	rows, err := db.Query("SELECT time, type, source FROM events order by time")
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Printf("Got row: %+v", rows)
 	defer rows.Close()
 	for rows.Next() {
 		var eventtype, source string
