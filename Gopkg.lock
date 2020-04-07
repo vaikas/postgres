@@ -85,14 +85,14 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:248d63bf04bfc6a316b0af5bd4204068b5f6ff9ef4ba9a07a9ef6c0e68d9f986"
+  digest = "1:baf71c3d320cd386c0ab8945b29474d657622c0a88f72499513aa13d3ed57772"
   name = "github.com/mattmoor/bindings"
   packages = [
     "pkg/bindings",
     "pkg/sql",
   ]
   pruneopts = "UT"
-  revision = "33768480ea1f6353d88db29eec77c322bc1127fc"
+  revision = "5386370566e65680d9ae663ae6dcca1d38003ed6"
 
 [[projects]]
   digest = "1:9e1d37b58d17113ec3cb5608ac0382313c5b59470b94ed97d0976e69c7022314"
@@ -161,11 +161,11 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:61ae35dcd52eda781deb4f395b53ea6cb619e2fce560e72deedf0d6cc6b67c59"
+  digest = "1:d42f105e885238cad3ca2b3b3646db166665af73c593623067f8987de613cf19"
   name = "knative.dev/eventing"
   packages = ["pkg/kncloudevents"]
   pruneopts = "UT"
-  revision = "fbd7f669404b9a30fec824fcd80cd52ca96b76c2"
+  revision = "8b8bed39541eaf8f9d518adfcd27112b36d0a1c8"
 
 [solve-meta]
   analyzer-name = "dep"
