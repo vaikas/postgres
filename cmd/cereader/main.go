@@ -16,17 +16,13 @@ import (
 	_ "github.com/lib/pq"
 )
 
-type reader struct {
-	dbName string
-}
-
-func (a *reader) handler(w http.ResponseWriter, r *http.Request) {
+func handler(w http.ResponseWriter, r *http.Request) {
 	log.Print("helloworld: received a request")
-	db, err := bindingsql.Open(context.TODO(), "postgres", a.dbName)
+	db, err := bindingsql.Open(context.TODO(), "postgres")
 	if err != nil {
 		log.Fatal(err)
 	}
-	rows, err := db.Query("SELECT time, type, source FROM events")
+	rows, err := db.Query("SELECT time, type, source FROM events order by time")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -58,8 +54,7 @@ func main() {
 		dbName = "cloudevents"
 	}
 
-	r := reader{dbName: dbName}
-	http.HandleFunc("/", r.handler)
+	http.HandleFunc("/", handler)
 	log.Printf("helloworld: listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
