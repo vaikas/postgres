@@ -92,7 +92,7 @@
     "pkg/sql",
   ]
   pruneopts = "UT"
-  revision = "5386370566e65680d9ae663ae6dcca1d38003ed6"
+  revision = "86473281beee15f57a0717611595c8272f15326c"
 
 [[projects]]
   digest = "1:9e1d37b58d17113ec3cb5608ac0382313c5b59470b94ed97d0976e69c7022314"
