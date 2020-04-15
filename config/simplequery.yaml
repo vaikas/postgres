@@ -9,24 +9,3 @@ spec:
     spec:
       containers:
       - image: ko://github.com/vaikas/postgres/cmd/simplequery
-        env:
-        - name: DBNAME
-          value: "knative"
-
----
-
-apiVersion: bindings.mattmoor.dev/v1alpha1
-kind: SQLBinding
-metadata:
-  name: vaikas-binding
-spec:
-  subject:
-    apiVersion: serving.knative.dev/v1
-    kind: Service
-    # Either name or selector may be specified.
-    selector:
-      matchLabels:
-        sql-inject: "true"
-  secret:
-    name: sql-secret
-

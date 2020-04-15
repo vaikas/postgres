@@ -1,0 +1,28 @@
+---
+apiVersion: bindings.mattmoor.dev/v1alpha1
+kind: SQLBinding
+metadata:
+  name: sql-binding-job
+spec:
+  subject:
+    apiVersion: batch/v1
+    kind: Job
+    selector:
+      matchLabels:
+        sql-inject: "true"
+  secret:
+    name: sql-secret
+---
+apiVersion: bindings.mattmoor.dev/v1alpha1
+kind: SQLBinding
+metadata:
+  name: sql-binding
+spec:
+  subject:
+    apiVersion: apps/v1
+    kind: Deployment
+    selector:
+      matchLabels:
+        sql-inject: "true"
+  secret:
+    name: sql-secret
