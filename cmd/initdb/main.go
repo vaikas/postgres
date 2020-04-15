@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-	"os"
 
 	"log"
 
@@ -29,12 +28,7 @@ var entries = []Entry{
 const fmtStr = "insert into users (first_name, last_name, email) values ('%s', '%s', '%s')"
 
 func main() {
-	dbName := os.Getenv("DBNAME")
-	if dbName == "" {
-		dbName = "knative"
-	}
-
-	db, err := bindingsql.Open(context.TODO(), "postgres", dbName)
+	db, err := bindingsql.Open(context.TODO(), "postgres")
 	if err != nil {
 		log.Fatal(err)
 	}

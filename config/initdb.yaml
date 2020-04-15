@@ -16,7 +16,7 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: initdb-
+  name: initdb-job
   labels:
     sql-inject: "true"
 spec:
@@ -26,7 +26,4 @@ spec:
       containers:
       - name: initdb
         image: ko://github.com/vaikas/postgres/cmd/initdb
-        env:
-        - name: DBNAME
-          value: "knative"
         
