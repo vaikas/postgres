@@ -16,8 +16,8 @@ ko apply -f ./config/dbsecret.yaml
 
 ## Create a binding
 
-Then create a binding that will bind this secret to `Pod`s that have
-label sql-inject="true".
+Then create bindings that will bind this secret to `Job`s and `Deployment`s
+that have label sql-inject="true".
 
 ```shell
 ko apply -f ./config/dbbinding.yaml
