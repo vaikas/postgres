@@ -1,18 +1,3 @@
----
-apiVersion: bindings.mattmoor.dev/v1alpha1
-kind: SQLBinding
-metadata:
-  name: init-binding
-spec:
-  subject:
-    apiVersion: batch/v1
-    kind: Job
-    selector:
-      matchLabels:
-        sql-inject: "true"
-  secret:
-    name: sql-secret
----
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -21,6 +6,9 @@ metadata:
     sql-inject: "true"
 spec:
   template:
+    metadata:
+      labels:
+        sql-inject: "true"
     spec:
       restartPolicy: Never
       containers:

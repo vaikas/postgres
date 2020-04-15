@@ -14,6 +14,15 @@ in our binding examples.
 ko apply -f ./config/dbsecret.yaml
 ```
 
+## Create a binding
+
+Then create a binding that will bind this secret to `Pod`s that have
+label sql-inject="true".
+
+```shell
+ko apply -f ./config/dbbinding.yaml
+```
+
 ## (Optional) Create a sample database
 
 You can then initialize the example database, or modify the examples
