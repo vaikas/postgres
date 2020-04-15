@@ -16,13 +16,8 @@ import (
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	dbName := os.Getenv("DBNAME")
-	if dbName == "" {
-		dbName = "knative"
-	}
-
 	log.Print("helloworld: received a request")
-	db, err := bindingsql.Open(context.TODO(), "postgres", dbName)
+	db, err := bindingsql.Open(context.TODO(), "postgres")
 	if err != nil {
 		log.Fatal(err)
 	}

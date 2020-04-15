@@ -14,12 +14,7 @@ import (
 )
 
 func main() {
-	dbName := os.Getenv("DBNAME")
-	if dbName == "" {
-		log.Fatal("No database name specified, bailing")
-	}
-
-	db, err := bindingsql.Open(context.TODO(), "postgres", dbName)
+	db, err := bindingsql.Open(context.TODO(), "postgres")
 	if err != nil {
 		log.Fatal(err)
 	}
