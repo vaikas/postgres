@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"time"
 
 	"log"
 
@@ -16,33 +15,6 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	log.Print("ce-reader: received a request")
-	db, err := bindingsql.Open(context.TODO(), "postgres")
-	if err != nil {
-		log.Fatal(err)
-	}
-	rows, err := db.Query("SELECT time, type, source FROM events order by time")
-	if err != nil {
-		log.Fatal(err)
-	}
-	log.Printf("Got row: %+v", rows)
-	defer rows.Close()
-	for rows.Next() {
-		var eventtype, source string
-		var ts time.Time
-		err = rows.Scan(&ts, &eventtype, &source)
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Fprintf(w, "%q %q %q\n", ts, source, eventtype)
-	}
-	err = rows.Err()
-	if err != nil {
-		log.Fatal(err)
-	}
-}
-
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -52,4 +24,30 @@ func main() {
 	http.HandleFunc("/", handler)
 	log.Printf("ce-reader: listening on port %s", port)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
+}
+
+func handler(w http.ResponseWriter, r *http.Request) {
+	log.Print("ce-reader: received a request")
+	db, err := bindingsql.Open(context.TODO(), "postgres")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer db.Close()
+	rows, err := db.Query("SELECT first_name, last_name, email FROM users")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer rows.Close()
+	for rows.Next() {
+		var first, last, email string
+		err = rows.Scan(&first, &last, &email)
+		if err != nil {
+			log.Fatal(err)
+		}
+		fmt.Fprintf(w, "%q %q %q\n", first, last, email)
+	}
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
 }

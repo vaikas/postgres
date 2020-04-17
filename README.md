@@ -34,12 +34,12 @@ ko create -f ./config/initdb.yaml
 ```
 
 
-## Deploy sample application
+## Deploy sample application (read)
 
-Now deploy the application. 
+Now deploy the application for returning the users in our db.
 
 ```shell
-ko apply -f ./config/simplequery.yaml
+ko apply -f ./config/getusers.yaml
 ```
 
 Then you can curl it for example and you should see:
@@ -49,5 +49,29 @@ vaikas-a01:postgres vaikas$ curl http://ville-test.default.10.185.144.217.xip.io
 "Ville" "Aikas" "vaikas@vmware.com"
 "Scotty" "Nicholson" "snichols@vmware.com"
 "Matt" "Moore" "mattmoor@vmware.com"
+```
+
+## Deploy sample application (write)
+
+Now deploy the application.
+
+```shell
+ko apply -f ./config/insertuser.yaml
+```
+
+Then you can curl it to insert a new user.
+
+```shell
+vaikas-a01:postgres vaikas$ curl 'http://ville-test.default.10.185.144.217.xip.io?first=spongebob&last=squarepants&email=sponge99@example.com'
+```
+
+And now re-running the query for users will return the new entry.
+
+```shell
+vaikas-a01:postgres vaikas$ curl http://ville-test.default.10.185.144.217.xip.io
+"Ville" "Aikas" "vaikas@vmware.com"
+"Scotty" "Nicholson" "snichols@vmware.com"
+"Matt" "Moore" "mattmoor@vmware.com"
+"spongebob" "squarepants" "sponge99@example.com"
 ```
 
