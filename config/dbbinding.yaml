@@ -19,8 +19,8 @@ metadata:
   name: sql-binding
 spec:
   subject:
-    apiVersion: apps/v1
-    kind: Deployment
+    apiVersion: serving.knative.dev/v1
+    kind: Service
     selector:
       matchLabels:
         sql-inject: "true"

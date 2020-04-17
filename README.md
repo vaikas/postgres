@@ -1,11 +1,12 @@
 # Example SQLBinding usage
 
 This repository contains a simple example on how to use SQL Binding from
-[github.com/mattmoor/bindings](https://github.com/mattmoor/bindings).
+[github.com/mattmoor/bindings](https://github.com/mattmoor/bindings). Examples
+assume you have Knative Serving running.
 
 ## Create a secret with your db credentials
 
-You have to modify samples/dbsecret.yaml to point to your database.
+You have to modify config/dbsecret.yaml to point to your database.
 
 Once you have modified that, create the secret that we'll then use
 in our binding examples.
@@ -16,18 +17,17 @@ ko apply -f ./config/dbsecret.yaml
 
 ## Create a binding
 
-Then create bindings that will bind this secret to `Job`s and `Deployment`s
-that have label sql-inject="true".
+Then create bindings that will bind this secret to `Job`s and Knative Serving
+`Services`s that have label sql-inject="true".
 
 ```shell
 ko apply -f ./config/dbbinding.yaml
 ```
 
-## (Optional) Create a sample database
+## Create a sample database
 
-You can then initialize the example database, or modify the examples
-to fit the schema to your particular database. Notice you must use
-create here instead of apply.
+You then initialize the example database to fit the schema to your particular
+database. Notice you must use create here instead of apply.
 
 ```shell
 ko create -f ./config/initdb.yaml
