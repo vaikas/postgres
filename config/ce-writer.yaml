@@ -23,6 +23,3 @@ spec:
     spec:
       containers:
       - image: ko://github.com/vaikas/postgres/cmd/cewriter
-        env:
-        - name: DBNAME
-          value: "cloudevents"

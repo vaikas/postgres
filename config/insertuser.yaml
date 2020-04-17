@@ -1,11 +1,11 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: ce-reader
+  name: insertuser
   labels:
     sql-inject: "true"
 spec:
   template:
     spec:
       containers:
-      - image: ko://github.com/vaikas/postgres/cmd/cereader
+      - image: ko://github.com/vaikas/postgres/cmd/insertuser
