@@ -1,0 +1,11 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: getusers
+  labels:
+    sql-inject: "true"
+spec:
+  template:
+    spec:
+      containers:
+      - image: docker.io/vaikas/getusers@sha256:5808a32f056651d8afd4b6b2b2c1836140940bd81402450643c203878f2b5a07

@@ -1,0 +1,11 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: insertuser
+  labels:
+    sql-inject: "true"
+spec:
+  template:
+    spec:
+      containers:
+      - image: docker.io/vaikas/insertuser@sha256:2a49842657a8b23cdea072ede413e5d5181fd2bcbb3ccba40ab2b0987240fdd7
