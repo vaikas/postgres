@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: initdb-job
+  labels:
+    sql-inject: "true"
+spec:
+  template:
+    metadata:
+      labels:
+        sql-inject: "true"
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: initdb
+        image: docker.io/vaikas/initdb@sha256:d67b72833ba912689254f183573033141dca30f6acbe9cf41c6d7fd812b96f6a

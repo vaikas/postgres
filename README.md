@@ -12,7 +12,7 @@ Once you have modified that, create the secret that we'll then use
 in our binding examples.
 
 ```shell
-ko apply -f ./config/dbsecret.yaml
+kubectl apply -f ./config/dbsecret.yaml
 ```
 
 ## Create a binding
@@ -21,7 +21,7 @@ Then create bindings that will bind this secret to `Job`s and Knative Serving
 `Services`s that have label sql-inject="true".
 
 ```shell
-ko apply -f ./config/dbbinding.yaml
+kubectl apply -f ./config/dbbinding.yaml
 ```
 
 ## Create a sample database
@@ -30,16 +30,15 @@ You then initialize the example database to fit the schema to your particular
 database. Notice you must use create here instead of apply.
 
 ```shell
-ko create -f ./config/initdb.yaml
+kubectl create -f ./config/prebuilt/initdb.yaml
 ```
-
 
 ## Deploy sample application (read)
 
 Now deploy the application for returning the users in our db.
 
 ```shell
-ko apply -f ./config/getusers.yaml
+kubectl apply -f ./config/prebuilt/getusers.yaml
 ```
 
 Then you can curl it for example and you should see:
@@ -56,7 +55,7 @@ vaikas-a01:postgres vaikas$ curl http://ville-test.default.10.185.144.217.xip.io
 Now deploy the application.
 
 ```shell
-ko apply -f ./config/insertuser.yaml
+kubectl apply -f ./config/prebuilt/insertuser.yaml
 ```
 
 Then you can curl it to insert a new user.
@@ -75,3 +74,9 @@ vaikas-a01:postgres vaikas$ curl http://ville-test.default.10.185.144.217.xip.io
 "spongebob" "squarepants" "sponge99@example.com"
 ```
 
+## Modifying samples
+
+The examples above used prebuilt containers to run things. If you want to modify
+the examples you can change the code and redeploy your own code by using
+[ko](https://github.com/google/ko) or choose whatever way suits you best to
+create containers.
