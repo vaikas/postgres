@@ -4,9 +4,8 @@ import (
 	"context"
 	"log"
 
-	cloudevents "github.com/cloudevents/sdk-go/v1"
+	cloudevents "github.com/cloudevents/sdk-go/v2"
 	bindingsql "github.com/mattmoor/bindings/pkg/sql"
-	"knative.dev/eventing/pkg/kncloudevents"
 
 	_ "database/sql"
 
@@ -38,7 +37,7 @@ func store(event cloudevents.Event) error {
 }
 
 func main() {
-	c, err := kncloudevents.NewDefaultClient()
+	c, err := cloudevents.NewDefaultClient()
 	if err != nil {
 		log.Fatal("Failed to create client, ", err)
 	}

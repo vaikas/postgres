@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"fmt"
-
 	"log"
 
 	bindingsql "github.com/mattmoor/bindings/pkg/sql"
