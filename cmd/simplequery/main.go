@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-
 	"log"
 
 	bindingsql "github.com/mattmoor/bindings/pkg/sql"

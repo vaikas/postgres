@@ -2,8 +2,6 @@ package main
 
 import (
 	"context"
-	"os"
-
 	"log"
 
 	bindingsql "github.com/mattmoor/bindings/pkg/sql"
