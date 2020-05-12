@@ -25,8 +25,8 @@ var entries = []Entry{
 	{"Matt", "Moore", "mattmoor@vmware.com"},
 }
 
-const fmtStr = "insert into users (first_name, last_name, email) values ('%s', '%s', '%s')"
-const tableQuery = `SELECT tablename FROM pg_catalog.pg_tables where tablename = $1`
+const fmtStr = "INSERT INTO users (first_name, last_name, email) VALUES ('%s', '%s', '%s')"
+const tableQuery = `SELECT tablename FROM pg_catalog.pg_tables WHERE tablename = $1`
 
 func checkTableExists(db *sql.DB) (bool, error) {
 	rows, err := db.Query(tableQuery, "users")
@@ -71,7 +71,7 @@ func main() {
 		log.Printf("Created Table: %+v", res)
 	}
 
-	_, err = db.Exec("delete from users")
+	_, err = db.Exec("DELETE FROM users")
 	if err != nil {
 		log.Fatal(err)
 	}
