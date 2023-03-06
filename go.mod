@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/cloudevents/sdk-go/v2 v2.0.0-RC2
-	github.com/lib/pq v1.3.0
+	github.com/lib/pq v1.10.7
 	github.com/mattmoor/bindings v0.0.0-20200414022535-86473281beee
 )
 
