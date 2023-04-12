@@ -3,7 +3,7 @@ module github.com/vaikas/postgres
 go 1.19
 
 require (
-	github.com/cloudevents/sdk-go/v2 v2.13.0
+	github.com/cloudevents/sdk-go/v2 v2.14.0
 	github.com/lib/pq v1.10.7
 	github.com/mattmoor/bindings v0.0.0-20200414022535-86473281beee
 )
